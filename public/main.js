@@ -12,8 +12,9 @@
   function initSelect2(select, placeholder = '') {
     const $sel = $(select);
 
-    // Remove previous instance
+    // Skip if already initialised with same placeholder
     if ($sel.hasClass('select2-hidden-accessible')) {
+      if ($sel.data('placeholder') === placeholder) return;
       $sel.select2('destroy');
     }
 
@@ -25,6 +26,33 @@
       // Panel orientiert sich am Container, nicht am Body
       dropdownParent: $sel.parent(),
     });
+    $sel.data('placeholder', placeholder);
+  }
+
+  // Initialise container selector once per row
+  function initContainerSelect(select) {
+    if (select.dataset.initialised) return;
+    select.innerHTML =
+      '<option value="" selected disabled>Behälter</option>' +
+      '<option value="Flasche">Flasche</option>' +
+      '<option value="Kanister">Kanister</option>';
+    initSelect2(select, 'Behälter wählen');
+    select.dataset.initialised = 'true';
+  }
+
+  // Update volume options depending on container type
+  function updateVolumeOptions(contSel, volSel) {
+    volSel.disabled = !contSel.value;
+    volSel.innerHTML = '<option value="" selected disabled>Menge</option>';
+    if (contSel.value) {
+      const vols = contSel.value === 'Flasche'
+        ? ['0,5 l','0,75 l','1 l']
+        : ['5 l','10 l'];
+      vols.forEach(v => {
+        volSel.insertAdjacentHTML('beforeend', `<option value="${v}">${v}</option>`);
+      });
+    }
+    initSelect2(volSel, 'Menge wählen');
   }
 
   // Map: Kategorie → Produkt‑Liste
@@ -49,15 +77,7 @@
 
     const contSel = row.querySelector('.container-type');
     const volSel  = row.querySelector('.volume-select');
-    // Populate container-type dropdown (once)
-    if (!contSel.options.length) {
-      contSel.innerHTML =
-        '<option value="" selected disabled>Behälter</option>' +
-        '<option value="Flasche">Flasche</option>' +
-        '<option value="Kanister">Kanister</option>';
-      initSelect2(contSel, 'Behälter wählen');
-    }
-    // Reset volume-select
+    initContainerSelect(contSel);
     volSel.disabled = true;
     volSel.innerHTML = '<option value="" selected disabled>Menge</option>';
     initSelect2(volSel, 'Menge wählen');
@@ -109,20 +129,7 @@
         initSelect2(prodSel, 'Produkt wählen');
       }
 
-      contSel.onchange = () => {
-        volSel.disabled = !contSel.value;
-        volSel.innerHTML = '<option value="" selected disabled>Menge</option>';
-        const vols = contSel.value === 'Flasche'
-          ? ['0,5 l','0,75 l','1 l']
-          : ['5 l','10 l'];
-        vols.forEach(v => {
-          volSel.insertAdjacentHTML(
-            'beforeend',
-            `<option value="${v}">${v}</option>`
-          );
-        });
-        initSelect2(volSel, 'Menge wählen');
-      };
+      contSel.onchange = () => updateVolumeOptions(contSel, volSel);
 
       // Wenn dies die letzte Zeile ist und der Benutzer eine Kategorie wählt,
       // füge sofort eine neue leere Zeile an (damit immer eine freie Zeile sichtbar bleibt)
@@ -152,7 +159,8 @@
         // Show and enable container-type dropdown
         contSel.disabled = false;
         contSel.style.display = '';
-        initSelect2(contSel, 'Behälter wählen');
+        initContainerSelect(contSel);
+        updateVolumeOptions(contSel, volSel);
 
         qtyInp.disabled = false;
       }
@@ -180,14 +188,8 @@
         </td>
         <td>
           <div class="d-flex gap-1">
-            <select class="form-select form-select-sm container-type">
-              <option value="" selected disabled>Behälter</option>
-              <option value="Flasche">Flasche</option>
-              <option value="Kanister">Kanister</option>
-            </select>
-            <select class="form-select form-select-sm volume-select" disabled>
-              <option value="" selected disabled>Menge</option>
-            </select>
+            <select class="form-select form-select-sm container-type"></select>
+            <select class="form-select form-select-sm volume-select" disabled></select>
           </div>
         </td>
         <td class="sku align-middle">–</td>
