@@ -1,0 +1,26 @@
+[
+  { "image": "/img/eistee-zitrone.png",      "name": "Eistee Zitrone Sirup",          "sku": "2001", "price": null, "volume": "0,7 l", "container": "Flasche", "category": "Konventionell" },
+  { "image": "/img/himbeer.png",             "name": "Himbeer Sirup",                 "sku": "2002", "price": null, "volume": "0,7 l", "container": "Flasche", "category": "Konventionell" },
+  { "image": "/img/holunderbluete.png",      "name": "Holunderblüte Sirup",           "sku": "2003", "price": null, "volume": "0,7 l", "container": "Flasche", "category": "Konventionell" },
+  { "image": "/img/johannisbeer.png",        "name": "Johannisbeer Sirup",            "sku": "2004", "price": null, "volume": "0,7 l", "container": "Flasche", "category": "Konventionell" },
+  { "image": "/img/kirsch.png",              "name": "Kirsch Sirup",                  "sku": "2005", "price": null, "volume": "0,7 l", "container": "Flasche", "category": "Konventionell" },
+  { "image": "/img/mehrfrucht.png",          "name": "Mehrfrucht Sirup",              "sku": "2006", "price": null, "volume": "0,7 l", "container": "Flasche", "category": "Konventionell" },
+  { "image": "/img/pfirsich-orange.png",     "name": "Pfirsich-Orange Sirup",         "sku": "2007", "price": null, "volume": "0,7 l", "container": "Flasche", "category": "Konventionell" },
+  { "image": "/img/waldmeister.png",         "name": "Waldmeister Sirup",             "sku": "2008", "price": null, "volume": "0,7 l", "container": "Flasche", "category": "Konventionell" },
+
+  { "image": "/img/himbeer-kal.png",         "name": "Himbeer Sirup kalorienarm",     "sku": "2011", "price": null, "volume": "0,7 l", "container": "Flasche", "category": "Kalorienarm" },
+  { "image": "/img/orange-kal.png",          "name": "Orange Sirup kalorienarm",      "sku": "2012", "price": null, "volume": "0,7 l", "container": "Flasche", "category": "Kalorienarm" },
+  { "image": "/img/holunder-kal.png",        "name": "Holunderblüte Sirup kalorienarm","sku": "2013", "price": null, "volume": "0,7 l", "container": "Flasche", "category": "Kalorienarm" },
+  { "image": "/img/waldmeister-kal.png",     "name": "Waldmeister Sirup kalorienarm", "sku": "2014", "price": null, "volume": "0,7 l", "container": "Flasche", "category": "Kalorienarm" },
+
+  { "image": "/img/ananas-fit.png",          "name": "Ananas Fit Sirup",              "sku": "2021", "price": null, "volume": "0,7 l", "container": "Flasche", "category": "Fit" },
+  { "image": "/img/cassis-fit.png",          "name": "Cassis Fit Sirup",              "sku": "2022", "price": null, "volume": "0,7 l", "container": "Flasche", "category": "Fit" },
+  { "image": "/img/eistee-pfirsich-fit.png", "name": "Eistee Pfirsich Fit Sirup",     "sku": "2023", "price": null, "volume": "0,7 l", "container": "Flasche", "category": "Fit" },
+  { "image": "/img/multivitamin-fit.png",    "name": "Multivitamin Fit Sirup",        "sku": "2024", "price": null, "volume": "0,7 l", "container": "Flasche", "category": "Fit" },
+  { "image": "/img/waldmeister-fit.png",     "name": "Waldmeister Fit Sirup",         "sku": "2025", "price": null, "volume": "0,7 l", "container": "Flasche", "category": "Fit" },
+  { "image": "/img/zitrone-fit.png",         "name": "Zitrone Fit Sirup",             "sku": "2026", "price": null, "volume": "0,7 l", "container": "Flasche", "category": "Fit" },
+
+  { "image": "/img/mineralwasserplus-zitrone.png", "name": "MineralwasserPlus Zitrone", "sku": "2031", "price": null, "volume": "0,7 l", "container": "Flasche", "category": "MineralwasserPlus" },
+  { "image": "/img/mineralwasserplus-himbeer.png", "name": "MineralwasserPlus Himbeer", "sku": "2032", "price": null, "volume": "0,7 l", "container": "Flasche", "category": "MineralwasserPlus" },
+  { "image": "/img/mineralwasserplus-minze.png",   "name": "MineralwasserPlus Minze",   "sku": "2033", "price": null, "volume": "0,7 l", "container": "Flasche", "category": "MineralwasserPlus" }
+]

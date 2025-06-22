@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <meta charset="utf-8">
+  <title>Bosse-Bestellung – Demo</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link rel="stylesheet" href="/style.css">
+  <!-- Select2 CSS for enhanced dropdowns -->
+  <link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css" rel="stylesheet">
+</head>
+<body>
+  <div class="container-fluid px-lg-5">
+    <header class="text-center my-4">
+      <img src="/img/logo.svg" alt="Bosse Getränke" height="60">
+    </header>
+
+    <div class="row justify-content-center">
+      <div class="col-12 col-md-11 col-lg-11 col-xxl-10">
+        <div class="card shadow-sm p-4">
+          <h1 class="h2 fw-semibold mb-4 text-center">Online‑Bestellung</h1>
+
+          <form id="orderForm" class="needs-validation" novalidate>
+            <!-- Kundennummer -->
+            <div class="mb-3">
+              <label for="customer" class="form-label">Kundennummer</label>
+              <input id="customer" name="customer" class="form-control" required>
+            </div>
+
+            <!-- Produkt‑Tabelle -->
+            <table id="productTable" class="table table-striped table-bordered align-middle w-100">
+              <thead class="table-light">
+                <tr>
+                  <th>Kategorie</th>
+                  <th>Produkt</th>
+                  <th>Bild</th>
+                  <th>Behälter / Volumen</th>
+                  <th>SKU</th>
+                  <th>Menge</th>
+                  <th>Zwischen<br>summe</th>
+                </tr>
+              </thead>
+              <tbody id="orderBody">
+                <tr>
+                  <td><select class="form-select category"></select></td>
+                  <td><select class="form-select product" disabled></select></td>
+                  <td class="text-center align-middle">
+                    <img class="thumb" src="" alt="" height="48">
+                  </td>
+                  <td class="volume align-middle">
+                    <div class="d-flex gap-1">
+                      <select class="form-select form-select-sm container-type">
+                        <option value="" selected disabled>Behälter</option>
+                        <option value="Flasche">Flasche</option>
+                        <option value="Kanister">Kanister</option>
+                      </select>
+                      <select class="form-select form-select-sm volume-select" disabled>
+                        <option value="" selected disabled>Menge</option>
+                      </select>
+                    </div>
+                  </td>
+                  <td class="sku align-middle">–</td>
+                  <td><input type="number" class="form-control qty" min="0" disabled></td>
+                  <td class="sum text-end align-middle">0,00</td>
+                </tr>
+                <tr>
+                  <td><select class="form-select category"></select></td>
+                  <td><select class="form-select product" disabled></select></td>
+                  <td class="text-center align-middle">
+                    <img class="thumb" src="" alt="" height="48">
+                  </td>
+                  <td class="volume align-middle">
+                    <div class="d-flex gap-1">
+                      <select class="form-select form-select-sm container-type">
+                        <option value="" selected disabled>Behälter</option>
+                        <option value="Flasche">Flasche</option>
+                        <option value="Kanister">Kanister</option>
+                      </select>
+                      <select class="form-select form-select-sm volume-select" disabled>
+                        <option value="" selected disabled>Menge</option>
+                      </select>
+                    </div>
+                  </td>
+                  <td class="sku align-middle">–</td>
+                  <td><input type="number" class="form-control qty" min="0" disabled></td>
+                  <td class="sum text-end align-middle">0,00</td>
+                </tr>
+              </tbody>
+            </table>
+
+            <button id="addToCart" class="btn btn-primary w-100 mt-2">
+              Bestellung senden
+            </button>
+          </form>
+
+          <pre id="result" class="mt-3 text-success small"></pre>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+  <!-- Select2 JS -->
+  <script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
+  <script type="module" src="/main.js"></script>
+
+  <!-- Footer -->
+  <footer class="bosse-footer">
+  <!-- Main grey band -->
+  <section class="footer-main py-5">
+    <div class="container-fluid px-lg-5">
+      <div class="row gy-4">
+        <!-- Adresse -->
+        <div class="col-12 col-md-6 col-lg-3 footer-block">
+          <h6 class="footer-head">ADRESSE</h6>
+          Stemwederbergkelterei<br>
+          Friedrich Bosse GmbH &amp; Co. KG<br>
+          Oppenweher&nbsp;Str.&nbsp;21<br>
+          32351&nbsp;Stemwede
+        </div>
+
+        <!-- Öffnungszeiten -->
+        <div class="col-12 col-md-6 col-lg-3 footer-block">
+          <h6 class="footer-head">ÖFFNUNGSZEITEN</h6>
+          Montag – Donnerstag<br>
+          08:00 – 17:00 Uhr<br>
+          Freitag<br>
+          08:00 – 15:00 Uhr
+        </div>
+
+        <!-- Zertifizierungen -->
+        <div class="col-12 col-md-6 col-lg-3 footer-block">
+          <h6 class="footer-head">ZERTIFIZIERUNGEN</h6>
+          <ul class="list-unstyled mb-0">
+            <li>IFS Food Higher Level</li>
+            <li>Bio‑Zertifizierung</li>
+            <li>Kosher</li>
+          </ul>
+        </div>
+
+        <!-- Links -->
+        <div class="col-12 col-md-6 col-lg-3 footer-block">
+          <h6 class="footer-head">WEITERE LINKS</h6>
+          <ul class="list-unstyled mb-0">
+            <li><a href="https://www.bosse-getraenke.de/" class="footer-link">Startseite</a></li>
+            <li><a href="https://www.bosse-getraenke.de/impressum" class="footer-link">Impressum</a></li>
+            <li><a href="https://www.bosse-getraenke.de/datenschutz" class="footer-link">Datenschutz</a></li>
+            <li><a href="https://www.bosse-getraenke.de/kontakt" class="footer-link">Kontakt</a></li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Bottom dark band -->
+  <section class="footer-bottom py-3">
+    <div class="container-fluid px-lg-5 text-center small">
+      © 2025 Stemwederbergkelterei Friedrich Bosse
+    </div>
+  </section>
+</footer>
+</body>
+</html>
