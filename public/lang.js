@@ -107,6 +107,9 @@ window.i18n = {
     localStorage.setItem('lang', this.lang);
     document.documentElement.lang = this.lang;
     this.apply();
+    document.querySelectorAll('.lang-option').forEach(btn => {
+      btn.classList.toggle('active', btn.dataset.lang === this.lang);
+    });
   },
   t(key) {
     return translations[this.lang][key] || key;
@@ -126,11 +129,12 @@ window.i18n = {
 };
 
 document.addEventListener('DOMContentLoaded', () => {
-  const select = document.getElementById('langSelect');
   const stored = localStorage.getItem('lang') || 'de';
-  if (select) select.value = stored;
   i18n.setLang(stored);
-  if (select) {
-    select.addEventListener('change', e => i18n.setLang(e.target.value));
-  }
+  document.querySelectorAll('.lang-option').forEach(btn => {
+    btn.addEventListener('click', e => {
+      e.preventDefault();
+      i18n.setLang(btn.dataset.lang);
+    });
+  });
 });

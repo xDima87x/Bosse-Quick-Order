@@ -4,6 +4,8 @@
   <meta charset="utf-8">
   <title data-i18n="title">Bosse-Bestellung – Demo</title>
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+  <!-- Bootstrap Icons for the globe language menu -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.1/font/bootstrap-icons.css" rel="stylesheet">
   <link rel="stylesheet" href="/style.css">
   <!-- Select2 CSS for enhanced dropdowns -->
   <link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css" rel="stylesheet">
@@ -12,11 +14,16 @@
   <div class="container-fluid px-lg-5">
     <header class="d-flex justify-content-between align-items-center my-4">
       <img src="/img/logo.svg" alt="Bosse Getränke" height="60">
-      <select id="langSelect" class="form-select w-auto">
-        <option value="de">Deutsch</option>
-        <option value="en">English</option>
-        <option value="fr">Français</option>
-      </select>
+      <div class="dropdown">
+        <button id="langMenuButton" class="btn btn-light border" data-bs-toggle="dropdown" aria-expanded="false">
+          <i class="bi bi-globe"></i>
+        </button>
+        <ul class="dropdown-menu dropdown-menu-end">
+          <li><a href="#" class="dropdown-item lang-option" data-lang="de">Deutsch</a></li>
+          <li><a href="#" class="dropdown-item lang-option" data-lang="en">English</a></li>
+          <li><a href="#" class="dropdown-item lang-option" data-lang="fr">Français</a></li>
+        </ul>
+      </div>
     </header>
 
     <div class="row justify-content-center">
@@ -104,6 +111,8 @@
   </div>
 
   <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+  <!-- Bootstrap JS for dropdown functionality -->
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
   <!-- Select2 JS -->
   <script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
   <script src="/lang.js"></script>
