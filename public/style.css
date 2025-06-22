@@ -90,7 +90,10 @@ img.thumb {
   gap: 0.25rem;
 }
 
-#productTable td:nth-child(4) .container-type,
+#productTable td:nth-child(4) .container-type {
+  flex: 0 1 auto;  /* shrink if necessary */
+  min-width: 0;
+}
 #productTable td:nth-child(4) .volume-select {
   flex: 1 1 0;
   min-width: 0;
@@ -302,9 +305,9 @@ select.form-select {
   display: none;
 }
 
-/* Container-Dropdown behält eigene Breite */
+/* Container-Dropdown kann bei Bedarf schrumpfen */
 .container-type {
-  flex: 0 0 auto;
+  flex: 0 1 auto; /* allow shrinking on narrow screens */
   width: auto;
 }
 /* --- Responsive: Bild-Spalte ausblenden bei kleinen Viewports --- */
