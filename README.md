@@ -45,9 +45,13 @@ Abhängigkeiten installieren:
 
 npm install
 
-Lokalen Webserver starten (z. B. mit serve):
+Server starten:
 
-npx serve
+npm start # führt node index.js aus
+
+Alternativ nur das public-Verzeichnis bereitstellen:
+
+npx serve public
 
 Im Browser öffnen:
 
