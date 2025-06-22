@@ -15,6 +15,14 @@ body {
   color: #222;
 }
 
+/* Icon for language selector */
+.lang-icon {
+  color: var(--bosse-red);
+  font-size: 1.5rem;
+  text-decoration: none;
+  cursor: pointer;
+}
+
 /* -------- Bosse Quick‑Order Custom Styles -------- */
 /* Drop‑downs – breite Lesbarkeit */
 select.form-select.category,
