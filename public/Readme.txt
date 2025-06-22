@@ -34,9 +34,13 @@ cd bosse-quick-order
 
 npm install
 
-	3.	Starte einen lokalen Webserver, beispielsweise mit serve:
+        3.      Starte den Server:
 
-npx serve
+npm start # führt node index.js aus
+        Oder nur das public-Verzeichnis bereitstellen:
+
+npx serve public
+
 
 	4.	Öffne die Webseite in deinem Browser unter:
 
