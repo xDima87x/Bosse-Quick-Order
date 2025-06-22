@@ -111,6 +111,7 @@
 
       contSel.onchange = () => {
         volSel.disabled = !contSel.value;
+        volSel.style.display = contSel.value ? '' : 'none';
         volSel.innerHTML = '<option value="" selected disabled>Menge</option>';
         const vols = contSel.value === 'Flasche'
           ? ['0,5 l','0,75 l','1 l']
