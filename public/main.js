@@ -4,6 +4,7 @@
   const result    = document.getElementById('result');
   const addBtn    = document.getElementById('addToCart');
   const customer  = document.getElementById('customer');
+  const t = key => window.i18n.t(key);
 
   // Produktdaten holen
   const products = await (await fetch('/products')).json();
@@ -52,15 +53,15 @@
     // Populate container-type dropdown (once)
     if (!contSel.options.length) {
       contSel.innerHTML =
-        '<option value="" selected disabled>Behälter</option>' +
-        '<option value="Flasche">Flasche</option>' +
-        '<option value="Kanister">Kanister</option>';
-      initSelect2(contSel, 'Behälter wählen');
+        `<option value="" selected disabled>${t('container')}</option>` +
+        `<option value="Flasche">${t('bottle')}</option>` +
+        `<option value="Kanister">${t('canister')}</option>`;
+      initSelect2(contSel, t('placeholder_container'));
     }
     // Reset volume-select
     volSel.disabled = true;
-    volSel.innerHTML = '<option value="" selected disabled>Menge</option>';
-    initSelect2(volSel, 'Menge wählen');
+    volSel.innerHTML = `<option value="" selected disabled>${t('amount')}</option>`;
+    initSelect2(volSel, t('placeholder_amount'));
 
     // Hide and disable container/volume selects initially
     contSel.disabled = true;
@@ -71,9 +72,9 @@
     // Kategorie‑Options nur einmal befüllen
     if (!catSel.options.length) {
       catSel.innerHTML =
-        '<option value="" selected disabled>– Kategorie –</option>' +
+        `<option value="" selected disabled>– ${t('th_category')} –</option>` +
         categories.map(c => `<option value="${c}">${c}</option>`).join('');
-      initSelect2(catSel, 'Kategorie wählen');
+      initSelect2(catSel, t('placeholder_category'));
     }
 
     catSel.onchange = () => {
@@ -82,8 +83,8 @@
       qtyInp.value = '';
       sumTd.textContent = '0,00';
 
-      prodSel.innerHTML = '<option value="" selected disabled>– Produkt –</option>';
-      initSelect2(prodSel, 'Produkt wählen');
+      prodSel.innerHTML = `<option value="" selected disabled>– ${t('th_product')} –</option>`;
+      initSelect2(prodSel, t('placeholder_product'));
       $(prodSel).prop('disabled', !catSel.value);  // Disable if no category yet
 
       imgEl.src = '';
@@ -106,12 +107,12 @@
              </option>`,
           );
         });
-        initSelect2(prodSel, 'Produkt wählen');
+        initSelect2(prodSel, t('placeholder_product'));
       }
 
       contSel.onchange = () => {
         volSel.disabled = !contSel.value;
-        volSel.innerHTML = '<option value="" selected disabled>Menge</option>';
+        volSel.innerHTML = `<option value="" selected disabled>${t('amount')}</option>`;
         const vols = contSel.value === 'Flasche'
           ? ['0,5 l','0,75 l','1 l']
           : ['5 l','10 l'];
@@ -121,7 +122,7 @@
             `<option value="${v}">${v}</option>`
           );
         });
-        initSelect2(volSel, 'Menge wählen');
+        initSelect2(volSel, t('placeholder_amount'));
       };
 
       // Wenn dies die letzte Zeile ist und der Benutzer eine Kategorie wählt,
@@ -152,7 +153,7 @@
         // Show and enable container-type dropdown
         contSel.disabled = false;
         contSel.style.display = '';
-        initSelect2(contSel, 'Behälter wählen');
+        initSelect2(contSel, t('placeholder_container'));
 
         qtyInp.disabled = false;
       }
@@ -181,12 +182,12 @@
         <td>
           <div class="d-flex gap-1">
             <select class="form-select form-select-sm container-type">
-              <option value="" selected disabled>Behälter</option>
-              <option value="Flasche">Flasche</option>
-              <option value="Kanister">Kanister</option>
+              <option value="" selected disabled>${t('container')}</option>
+              <option value="Flasche">${t('bottle')}</option>
+              <option value="Kanister">${t('canister')}</option>
             </select>
             <select class="form-select form-select-sm volume-select" disabled>
-              <option value="" selected disabled>Menge</option>
+              <option value="" selected disabled>${t('amount')}</option>
             </select>
           </div>
         </td>
@@ -205,7 +206,7 @@
   addBtn.addEventListener('click', async () => {
     const custNo = customer.value.trim();
     if (!custNo) {
-      alert('Bitte Kundennummer angeben');
+      alert(t('alert_customer_missing'));
       return;
     }
 
@@ -216,7 +217,7 @@
       if (sku && qty > 0) items.push({ mat: sku, qty });
     });
     if (!items.length) {
-      alert('Keine gültigen Positionen');
+      alert(t('alert_no_items'));
       return;
     }
 
@@ -227,10 +228,10 @@
         body: JSON.stringify({ customer: custNo, items }),
       });
       if (!res.ok) throw new Error(await res.text());
-      result.textContent = '✓ Bestellung gesendet';
+      result.textContent = t('msg_order_sent');
       result.className = 'text-success mt-2';
     } catch (err) {
-      result.textContent = 'Fehler: ' + err.message;
+      result.textContent = t('msg_error_prefix') + err.message;
       result.className = 'text-danger mt-2';
     }
   });

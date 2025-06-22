@@ -39,5 +39,9 @@ app.post('/order', (req, res) => {
 // --------------------------------------------------
 // Server starten
 // --------------------------------------------------
-const PORT = 3000;
-app.listen(PORT, () => console.log(`API läuft auf Port ${PORT}`));
+const PORT = process.env.PORT || 3000;
+if (process.env.NODE_ENV !== 'test') {
+  app.listen(PORT, () => console.log(`API läuft auf Port ${PORT}`));
+}
+
+export default app;
