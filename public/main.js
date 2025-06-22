@@ -179,7 +179,7 @@
           <img class="thumb" src="" alt="" height="48">
         </td>
         <td>
-          <div class="d-flex gap-1">
+          <div class="d-flex gap-1 w-100">
             <select class="form-select form-select-sm container-type">
               <option value="" selected disabled>Behälter</option>
               <option value="Flasche">Flasche</option>

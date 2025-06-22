@@ -88,14 +88,15 @@ img.thumb {
   display: flex;
   flex-wrap: nowrap;
   gap: 0.25rem;
+  width: 100%;
 }
 
 #productTable td:nth-child(4) .container-type {
-  flex: 0 1 auto;  /* shrink if necessary */
+  flex: 0 1 40%;
   min-width: 0;
 }
 #productTable td:nth-child(4) .volume-select {
-  flex: 1 1 0;
+  flex: 1 1 60%;
   min-width: 0;
 }
 
