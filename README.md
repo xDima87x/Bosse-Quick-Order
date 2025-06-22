@@ -30,7 +30,7 @@ Scripting & AJAX: jQuery
 
 Erweiterte Dropdowns: Select2
 
-Build-Tools: npm, serve
+Build-Tools: npm
 
 Versionierung: Git
 
@@ -45,9 +45,11 @@ Abhängigkeiten installieren:
 
 npm install
 
-Lokalen Webserver starten (z. B. mit serve):
+Lokalen Webserver starten:
 
-npx serve
+npm start
+
+Der Express-Server läuft über `node index.js` und bedient das Verzeichnis `public`.
 
 Im Browser öffnen:
 

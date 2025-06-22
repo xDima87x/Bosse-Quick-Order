@@ -34,9 +34,11 @@ cd bosse-quick-order
 
 npm install
 
-	3.	Starte einen lokalen Webserver, beispielsweise mit serve:
+	3.	Starte den lokalen Webserver:
 
-npx serve
+npm start
+
+       Der Express-Server läuft über `node index.js` und bedient das Verzeichnis `public`.
 
 	4.	Öffne die Webseite in deinem Browser unter:
 
