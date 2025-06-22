@@ -111,9 +111,9 @@ img.thumb {
 
 #productTable td:nth-child(7),
 #productTable th:nth-child(7) {
-  width: 90px;
-  min-width: 90px;
-  max-width: 90px;
+  width: 110px;
+  min-width: 110px;
+  max-width: 110px;
 }
 
 #productTable td:nth-child(5),
