@@ -53,6 +53,14 @@ Im Browser öffnen:
 
 http://localhost:3000
 
+Um die Kundennummer direkt vorzubelegen, kann sie als URL-Parameter
+angegeben werden, z.B.:
+
+```
+http://localhost:3000/?customer=4711
+```
+Nach dem Laden wird das Eingabefeld automatisch ausgefüllt.
+
 Hinweis: Für Entwicklung und Tests wird Node.js (Version ≥ 14) empfohlen.
 
 📂 Projektstruktur

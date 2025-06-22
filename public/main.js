@@ -5,6 +5,10 @@
   const addBtn    = document.getElementById('addToCart');
   const customer  = document.getElementById('customer');
 
+  // Kundennummer aus URL übernehmen (wenn vorhanden)
+  const custParam = new URLSearchParams(window.location.search).get('customer');
+  if (custParam) customer.value = custParam;
+
   // Produktdaten holen
   const products = await (await fetch('/products')).json();
 
