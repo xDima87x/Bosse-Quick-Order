@@ -1,12 +1,13 @@
 // Quick‑Order ohne DataTables: Kategorie‑ und Produkt‑Dropdown -----------------
-(async function () {
+export async function initLegacy() {
   const orderBody = document.getElementById('orderBody');
   const result    = document.getElementById('result');
   const addBtn    = document.getElementById('addToCart');
   const customer  = document.getElementById('customer');
 
   // Produktdaten holen
-  const products = await (await fetch('/products')).json();
+  const apiBase = import.meta.env.VITE_API_BASE_URL || '';
+  const products = await (await fetch(`${apiBase}/data/products.json`)).json();
 
   // Helper: initialise Select2 with consistent cell-wide behaviour
   function initSelect2(select, placeholder = '') {
@@ -221,7 +222,7 @@
     }
 
     try {
-      const res = await fetch('/order', {
+      const res = await fetch(`${apiBase}/order`, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ customer: custNo, items }),
@@ -234,4 +235,4 @@
       result.className = 'text-danger mt-2';
     }
   });
-})();
+}
