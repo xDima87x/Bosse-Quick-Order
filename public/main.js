@@ -174,12 +174,12 @@
     // Blanko-Zeile erzeugen
     const rowHTML = `
       <tr>
-        <td><select class="form-select category"></select></td>
-        <td><select class="form-select product" disabled></select></td>
-        <td class="text-center align-middle">
+        <td data-label="Kategorie"><select class="form-select category"></select></td>
+        <td data-label="Produkt"><select class="form-select product" disabled></select></td>
+        <td class="text-center align-middle" data-label="Bild">
           <img class="thumb" src="" alt="" height="48">
         </td>
-        <td>
+        <td data-label="Behälter/Volumen">
           <div class="d-flex gap-1">
             <select class="form-select form-select-sm container-type">
               <option value="" selected disabled>Behälter</option>
@@ -191,9 +191,9 @@
             </select>
           </div>
         </td>
-        <td class="sku align-middle">–</td>
-        <td><input type="number" class="form-control qty" min="0" disabled></td>
-        <td class="sum text-end align-middle">0,00</td>
+        <td class="sku align-middle" data-label="SKU">–</td>
+        <td data-label="Menge"><input type="number" class="form-control qty" min="0" disabled></td>
+        <td class="sum text-end align-middle" data-label="Zwischensumme">0,00</td>
       </tr>`;
     orderBody.insertAdjacentHTML('beforeend', rowHTML);
 
