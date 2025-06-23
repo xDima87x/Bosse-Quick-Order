@@ -243,6 +243,65 @@ select.form-select {
     min-width: 200px;
     font-size: 0.9rem;
   }
+
+  body {
+    margin: 5px;
+    font-size: 0.95rem;
+  }
+
+  .card {
+    padding: 1rem;
+  }
+
+  #productTable {
+    border: 0;
+  }
+
+  #productTable thead {
+    display: none;
+  }
+
+  #productTable,
+  #productTable tbody,
+  #productTable tr {
+    display: block;
+    width: 100%;
+  }
+
+  #productTable tr {
+    border: 1px solid #dee2e6;
+    border-radius: 0.5rem;
+    padding: 0.5rem;
+    margin-bottom: 1rem;
+  }
+
+  #productTable td {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0.25rem 0;
+    font-size: 0.9rem;
+  }
+
+  #productTable td input,
+  #productTable td select,
+  #productTable td .d-flex {
+    margin-left: auto;
+  }
+
+  #productTable td input {
+    text-align: right;
+  }
+
+  #productTable td::before {
+    content: attr(data-label);
+    font-weight: 600;
+    margin-right: 0.5rem;
+  }
+
+  #productTable td:nth-child(4) .volume {
+    flex-direction: column;
+  }
 }
 
 /* Footer Layout */
