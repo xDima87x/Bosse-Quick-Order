@@ -6,7 +6,8 @@
   const customer  = document.getElementById('customer');
 
   // Produktdaten holen
-  const products = await (await fetch('/products')).json();
+  // Bei der statischen Vercel-Seite direkt die JSON-Datei laden
+  const products = await (await fetch('/data/products.json')).json();
 
   // Helper: initialise Select2 with consistent cell-wide behaviour
   function initSelect2(select, placeholder = '') {
