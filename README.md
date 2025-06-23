@@ -55,6 +55,18 @@ http://localhost:3000
 
 Hinweis: Für Entwicklung und Tests wird Node.js (Version ≥ 14) empfohlen.
 
+🧪 Tests ausführen
+
+Die API kann mit automatisierten Tests überprüft werden. Diese lassen sich
+zu jeder Zeit mit dem Befehl
+
+```
+npm test
+```
+
+starten. Dabei verwendet der eingebaute Node.js‑Testrunner zusammen mit
+Supertest die Endpunkte `/products` und `/order`.
+
 📂 Projektstruktur
 
 bosse-quick-order/
