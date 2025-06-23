@@ -53,7 +53,36 @@ Im Browser öffnen:
 
 http://localhost:3000
 
-Hinweis: Für Entwicklung und Tests wird Node.js (Version ≥ 14) empfohlen.
+Hinweis: Für Entwicklung und Tests wird Node.js (Version ≥ 18) empfohlen. Der eingebaute Node.js-Testrunner ist ab Version 18 verfügbar.
+
+🧪 Tests ausführen
+
+Die API kann mit automatisierten Tests überprüft werden. Stelle zunächst sicher,
+dass alle Abhängigkeiten installiert sind:
+
+```
+pnpm install
+```
+
+Die Testumgebung nutzt Node’s eingebauten Testrunner ab Version 18 und wird von
+dem Skript `npm test` automatisch mit `NODE_ENV=test` gestartet. Rufe die Tests
+zu jeder Zeit mit
+
+```
+npm test
+```
+
+starten.
+
+Die Tests prüfen aktuell vier Fälle:
+
+1. `GET /products` liefert ein JSON‑Array.
+2. `POST /order` gibt `{ status: 'ok' }` zurück.
+3. `GET /` stellt die Datei `index.html` bereit.
+4. Nicht vorhandene Routen liefern einen `404` Status.
+
+Supertest simuliert dabei HTTP‑Anfragen gegen die Express‑App, ohne einen
+echten Server zu starten.
 
 📂 Projektstruktur
 
