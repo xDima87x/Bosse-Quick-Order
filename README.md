@@ -94,3 +94,25 @@ Bitte halte dich an die bestehenden Code-Standards und dokumentiere größere Ä
 📝 Lizenz
 
 Dieses Projekt steht unter der MIT-Lizenz. Details findest du in der Datei LICENSE.
+
+## Lokale Entwicklung
+
+1. Abhängigkeiten installieren:
+   ```bash
+   pnpm install
+   ```
+2. Entwicklungsserver starten:
+   ```bash
+   pnpm dev
+   ```
+   Die Anwendung ist danach unter `http://localhost:5173` erreichbar.
+
+## Build & Deployment auf Vercel
+
+1. Produktionsbuild erzeugen:
+   ```bash
+   pnpm build
+   ```
+   Der fertige Code liegt im Ordner `dist`.
+2. Dieses Repository bei Vercel verknüpfen. Jeder Push auf `main` löst dann automatisch ein neues Deployment unter `https://<projektname>.vercel.app` aus.
+3. Optionale Umgebungsvariablen können in einer `.env` Datei definiert werden (siehe `.env.example`).

@@ -1,0 +1,8 @@
+{
+  "cleanUrls": true,
+  "rewrites": [
+    { "source": "/order", "destination": "/api/order" }
+  ],
+  "buildCommand": "pnpm build",
+  "outputDirectory": "dist"
+}
