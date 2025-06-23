@@ -84,14 +84,14 @@ img.thumb {
   padding: 0.25rem 0.25rem;
 }
 
-#productTable td:nth-child(4) .volume {
+#productTable td.volume > .d-flex {
   display: flex;
   flex-wrap: nowrap;
   gap: 0.25rem;
 }
 
-#productTable td:nth-child(4) .container-type,
-#productTable td:nth-child(4) .volume-select {
+#productTable td.volume .container-type,
+#productTable td.volume .volume-select {
   flex: 1 1 0;
   min-width: 0;
 }
@@ -242,6 +242,90 @@ select.form-select {
   select.form-select.product {
     min-width: 200px;
     font-size: 0.9rem;
+  }
+
+  body {
+    margin: 5px;
+    font-size: 0.95rem;
+  }
+
+  .card {
+    padding: 1rem;
+  }
+
+  #productTable {
+    border: 0;
+  }
+
+  #productTable thead {
+    display: none;
+  }
+
+  #productTable,
+  #productTable tbody,
+  #productTable tr {
+    display: block;
+    width: 100%;
+  }
+
+  #productTable tr {
+    border: 1px solid #dee2e6;
+    border-radius: 0.5rem;
+    padding: 0.5rem;
+    margin-bottom: 1rem;
+  }
+
+  #productTable td {
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+    padding: 0.25rem 0;
+    font-size: 0.9rem;
+  }
+
+  #productTable td input,
+  #productTable td select,
+  #productTable td .d-flex {
+    margin-left: 0;
+  }
+
+  #productTable td input,
+  #productTable td select {
+    width: auto;
+    display: inline-block;
+    text-align: right;
+  }
+
+  #productTable td input {
+    text-align: right;
+  }
+
+  #productTable td::before {
+    content: attr(data-label);
+    font-weight: 600;
+    margin-right: auto;
+    padding-right: 0.5rem;
+  }
+
+  #productTable td.volume > .d-flex {
+    flex-direction: column;
+    align-items: flex-end;
+  }
+
+  /* Select2-Container und Volumen-Dropdowns nicht mehr auf volle Breite strecken */
+  #productTable td .select2-container {
+    width: auto !important;
+  }
+
+  #productTable td.volume .container-type,
+  #productTable td.volume .volume-select {
+    flex: 0 0 auto;
+  }
+
+  /* Erste beiden Spalten sollen in der mobilen Ansicht die volle Breite nutzen */
+  #productTable td:nth-child(1),
+  #productTable td:nth-child(2) {
+    width: 100% !important;
   }
 }
 
