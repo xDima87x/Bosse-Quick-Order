@@ -53,7 +53,19 @@ Im Browser öffnen:
 
 http://localhost:3000
 
-Hinweis: Für Entwicklung und Tests wird Node.js (Version ≥ 14) empfohlen.
+Hinweis: Für Entwicklung und Tests wird Node.js (Version ≥ 18) empfohlen. Der eingebaute Node.js-Testrunner ist ab Version 18 verfügbar.
+
+🧪 Tests ausführen
+
+Die API kann mit automatisierten Tests überprüft werden. Diese lassen sich
+zu jeder Zeit mit dem Befehl
+
+```
+npm test
+```
+
+starten. Dabei verwendet der eingebaute Node.js‑Testrunner zusammen mit
+Supertest die Endpunkte `/products` und `/order`.
 
 📂 Projektstruktur
 
