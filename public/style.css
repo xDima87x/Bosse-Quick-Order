@@ -84,14 +84,14 @@ img.thumb {
   padding: 0.25rem 0.25rem;
 }
 
-#productTable td:nth-child(4) .volume {
+#productTable td.volume > .d-flex {
   display: flex;
   flex-wrap: nowrap;
   gap: 0.25rem;
 }
 
-#productTable td:nth-child(4) .container-type,
-#productTable td:nth-child(4) .volume-select {
+#productTable td.volume .container-type,
+#productTable td.volume .volume-select {
   flex: 1 1 0;
   min-width: 0;
 }
@@ -237,11 +237,152 @@ select.form-select {
   text-decoration: underline;
 }
 
+/* Mobile Layout bis 768px ---------------------------------------------------*/
+@media (max-width: 768px) {
+  /* Volle Breite fuer Formulare und Container */
+  .card,
+  .card-body,
+  form,
+  .form-group,
+  .row,
+  .row > [class^="col-"] {
+    width: 100% !important;
+    max-width: 100% !important;
+    margin-left: 0;
+    margin-right: 0;
+    box-sizing: border-box;
+  }
+
+  /* Formularfelder und Buttons */
+  input,
+  select,
+  button,
+  .form-control,
+  .form-select,
+  .btn {
+    display: block;
+    width: 100%;
+    max-width: 100%;
+    box-sizing: border-box;
+    padding-left: 0.25rem;
+    padding-right: 0.25rem;
+    margin-bottom: 0.75rem;
+  }
+
+  /* Dropdowns vor anderen Inhalten */
+  select {
+    position: relative;
+    z-index: 1000;
+  }
+
+  /* Überlauf sichtbar halten */
+  .card,
+  .card-body,
+  .form-group {
+    overflow: visible;
+  }
+}
+
 @media (max-width: 576px) {
   select.form-select.category,
   select.form-select.product {
     min-width: 200px;
     font-size: 0.9rem;
+  }
+
+  body {
+    margin: 5px;
+    font-size: 0.95rem;
+  }
+
+  .card {
+    padding: 1rem;
+  }
+
+  #productTable {
+    border: 0;
+  }
+
+  #productTable thead {
+    display: none;
+  }
+
+  #productTable,
+  #productTable tbody,
+  #productTable tr {
+    display: block;
+    width: 100%;
+  }
+
+  #productTable tr {
+    border: 1px solid #dee2e6;
+    border-radius: 0.5rem;
+    padding: 0.5rem;
+    margin-bottom: 1rem;
+  }
+
+  #productTable td {
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+    padding: 0.25rem 0;
+    font-size: 0.9rem;
+  }
+
+  #productTable td input,
+  #productTable td select,
+  #productTable td .d-flex {
+    margin-left: 0;
+    width: 100%;
+  }
+
+  #productTable td input,
+  #productTable td select {
+    width: 100%;
+    display: block;
+    text-align: right;
+  }
+
+  #productTable td input {
+    text-align: right;
+  }
+
+  #productTable td::before {
+    content: attr(data-label);
+    font-weight: 600;
+    margin-right: auto;
+    padding-right: 0.5rem;
+  }
+
+  #productTable td.volume > .d-flex {
+    flex-direction: column;
+    align-items: flex-end;
+  }
+
+  /* Select2-Container volle Breite verwenden */
+  #productTable td .select2-container {
+    width: 100% !important;
+  }
+
+  #productTable td.volume .container-type,
+  #productTable td.volume .volume-select {
+    flex: 1 1 0;
+    width: 100% !important;
+    max-width: 100% !important;
+  }
+
+  /* Menge-Input auf volle Breite bringen */
+  #productTable td .qty {
+    width: 100% !important;
+    max-width: 100% !important;
+  }
+
+  /* Alle Spalten sollen im Mobile-Modus die volle Breite nutzen */
+  #productTable td,
+  #productTable th {
+    width: 100% !important;
+    max-width: 100% !important;
+    min-width: 0 !important;
   }
 }
 
@@ -308,7 +449,7 @@ select.form-select {
   width: auto;
 }
 /* --- Responsive: Bild-Spalte ausblenden bei kleinen Viewports --- */
-@media (max-width: 1400px) {
+@media (min-width: 769px) and (max-width: 1400px) {
   /* Ausblenden der Bild-Spalten-Kopfzeile und Zellen */
   #productTable th:nth-child(3),
   #productTable td:nth-child(3) {
@@ -318,5 +459,18 @@ select.form-select {
   #productTable td:nth-child(1),
   #productTable td:nth-child(2) {
     width: 50% !important;
+  }
+}
+
+/* Mobile-Korrektur: erste beiden Dropdowns sollen volle Breite haben */
+@media (max-width: 768px) {
+  #productTable td:nth-child(1),
+  #productTable td:nth-child(2),
+  #productTable td:nth-child(1) select,
+  #productTable td:nth-child(2) select {
+    width: 100% !important;
+    max-width: 100% !important;
+    display: block !important;
+    box-sizing: border-box !important;
   }
 }
