@@ -11,7 +11,8 @@ const __dirname = path.dirname(fileURLToPath(import.meta.url));
 const app = express();
 app.use(express.json());
 
-// Statische Dateien aus /public bereitstellen
+// Statische Dateien aus /dist (Build) bzw. /public bereitstellen
+app.use(express.static(path.join(__dirname, 'dist')));
 app.use(express.static(path.join(__dirname, 'public')));
 
 // ------------------------------------------------------------------
