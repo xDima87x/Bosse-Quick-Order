@@ -2,16 +2,17 @@
 <html lang="de">
 <head>
   <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>Bosse-Bestellung – Demo</title>
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
-  <link rel="stylesheet" href="/style.css">
+  <link rel="stylesheet" href="style.css">
   <!-- Select2 CSS for enhanced dropdowns -->
   <link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css" rel="stylesheet">
 </head>
 <body>
   <div class="container-fluid px-lg-5">
     <header class="text-center my-4">
-      <img src="/img/logo.svg" alt="Bosse Getränke" height="60">
+      <img src="img/logo.svg" alt="Bosse Getränke" height="60">
     </header>
 
     <div class="row justify-content-center">
@@ -27,7 +28,8 @@
             </div>
 
             <!-- Produkt‑Tabelle -->
-            <table id="productTable" class="table table-striped table-bordered align-middle w-100">
+            <div class="table-responsive">
+            <table id="productTable" class="table table-striped table-bordered align-middle w-100 mb-0">
               <thead class="table-light">
                 <tr>
                   <th>Kategorie</th>
@@ -41,13 +43,14 @@
               </thead>
               <tbody id="orderBody">
                 <tr>
-                  <td><select class="form-select category"></select></td>
-                  <td><select class="form-select product" disabled></select></td>
-                  <td class="text-center align-middle">
+                  <td data-label="Kategorie"><select class="form-select category"></select></td>
+                  <td data-label="Produkt"><select class="form-select product" disabled></select></td>
+                  <td class="text-center align-middle" data-label="Bild">
                     <img class="thumb" src="" alt="" height="48">
                   </td>
-                  <td class="volume align-middle">
-                    <div class="d-flex gap-1">
+                  <td class="volume align-middle" data-label="Behälter/Volumen">
+                    <!-- Wrapper für Behälter- und Volumen-Select -->
+                    <div class="row-container">
                       <select class="form-select form-select-sm container-type">
                         <option value="" selected disabled>Behälter</option>
                         <option value="Flasche">Flasche</option>
@@ -58,18 +61,29 @@
                       </select>
                     </div>
                   </td>
-                  <td class="sku align-middle">–</td>
-                  <td><input type="number" class="form-control qty" min="0" disabled></td>
-                  <td class="sum text-end align-middle">0,00</td>
+                  <td class="sku align-middle line-cell" data-label="SKU">
+                    <div class="line-container">
+                      <span class="line-label">SKU</span>
+                      <span class="line-value">–</span>
+                    </div>
+                  </td>
+                  <td class="line-cell" data-label="Menge">
+                    <div class="line-container">
+                      <span class="line-label">Menge</span>
+                      <input type="number" class="form-control qty" min="0" disabled>
+                    </div>
+                  </td>
+                  <td class="sum text-end align-middle" data-label="Zwischensumme">0,00</td>
                 </tr>
                 <tr>
-                  <td><select class="form-select category"></select></td>
-                  <td><select class="form-select product" disabled></select></td>
-                  <td class="text-center align-middle">
+                  <td data-label="Kategorie"><select class="form-select category"></select></td>
+                  <td data-label="Produkt"><select class="form-select product" disabled></select></td>
+                  <td class="text-center align-middle" data-label="Bild">
                     <img class="thumb" src="" alt="" height="48">
                   </td>
-                  <td class="volume align-middle">
-                    <div class="d-flex gap-1">
+                  <td class="volume align-middle" data-label="Behälter/Volumen">
+                    <!-- Wrapper für Behälter- und Volumen-Select -->
+                    <div class="row-container">
                       <select class="form-select form-select-sm container-type">
                         <option value="" selected disabled>Behälter</option>
                         <option value="Flasche">Flasche</option>
@@ -80,12 +94,23 @@
                       </select>
                     </div>
                   </td>
-                  <td class="sku align-middle">–</td>
-                  <td><input type="number" class="form-control qty" min="0" disabled></td>
-                  <td class="sum text-end align-middle">0,00</td>
+                  <td class="sku align-middle line-cell" data-label="SKU">
+                    <div class="line-container">
+                      <span class="line-label">SKU</span>
+                      <span class="line-value">–</span>
+                    </div>
+                  </td>
+                  <td class="line-cell" data-label="Menge">
+                    <div class="line-container">
+                      <span class="line-label">Menge</span>
+                      <input type="number" class="form-control qty" min="0" disabled>
+                    </div>
+                  </td>
+                  <td class="sum text-end align-middle" data-label="Zwischensumme">0,00</td>
                 </tr>
               </tbody>
             </table>
+            </div>
 
             <button id="addToCart" class="btn btn-primary w-100 mt-2">
               Bestellung senden
@@ -101,7 +126,7 @@
   <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
   <!-- Select2 JS -->
   <script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
-  <script type="module" src="/main.js"></script>
+  <script type="module" src="main.js"></script>
 
   <!-- Footer -->
   <footer class="bosse-footer">
