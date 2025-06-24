@@ -5,8 +5,38 @@
   const addBtn    = document.getElementById('addToCart');
   const customer  = document.getElementById('customer');
 
+  // Fallback für mobiles Layout: Felder vollbreit und korrekt gestapelt
+  function applyMobileLayout() {
+    const mobile = window.innerWidth <= 768;
+    document.querySelectorAll("#orderBody input, #orderBody select").forEach(el => {
+      if (mobile) {
+        el.style.display = "block";
+        el.style.width = "100%";
+        el.style.boxSizing = "border-box";
+        el.style.marginBottom = "0.75rem";
+      } else {
+        el.style.display = "";
+        el.style.width = "";
+        el.style.boxSizing = "";
+        el.style.marginBottom = "";
+      }
+    });
+    document.querySelectorAll("#orderBody .d-flex").forEach(el => {
+      el.style.flexDirection = mobile ? "column" : "";
+    });
+    document.querySelectorAll(".card, .card-body, .form-group, .table-responsive").forEach(el => {
+      el.style.overflow = mobile ? "visible" : "";
+    });
+    document.querySelectorAll("#orderBody select").forEach(sel => {
+      sel.style.position = mobile ? "relative" : "";
+      sel.style.zIndex = mobile ? "2000" : "";
+    });
+  }
+
+
   // Produktdaten holen
-  const products = await (await fetch('/products')).json();
+  // Bei der statischen Vercel-Seite direkt die JSON-Datei laden
+  const products = await (await fetch('data/products.json')).json();
 
   // Helper: initialise Select2 with consistent cell-wide behaviour
   function initSelect2(select, placeholder = '') {
@@ -20,7 +50,7 @@
     $sel.select2({
       width: '100%',              // Container füllt die Zelle
       placeholder,
-      dropdownAutoWidth: true,    // Panel passt sich der längsten Option an
+      dropdownAutoWidth: false,   // Dropdown bleibt so breit wie der Container
       minimumResultsForSearch: 10,
       // Panel orientiert sich am Container, nicht am Body
       dropdownParent: $sel.parent(),
@@ -36,6 +66,9 @@
 
   // In jeder Zeile die Dropdowns initialisieren
   [...orderBody.rows].forEach(initRow);
+
+  applyMobileLayout();
+  window.addEventListener('resize', applyMobileLayout);
 
   // ------------- Funktionen --------------------------------------------------
   function initRow(row) {
@@ -173,12 +206,12 @@
     // Blanko-Zeile erzeugen
     const rowHTML = `
       <tr>
-        <td><select class="form-select category"></select></td>
-        <td><select class="form-select product" disabled></select></td>
-        <td class="text-center align-middle">
+        <td data-label="Kategorie"><select class="form-select category"></select></td>
+        <td data-label="Produkt"><select class="form-select product" disabled></select></td>
+        <td class="text-center align-middle" data-label="Bild">
           <img class="thumb" src="" alt="" height="48">
         </td>
-        <td>
+        <td data-label="Behälter/Volumen">
           <div class="d-flex gap-1">
             <select class="form-select form-select-sm container-type">
               <option value="" selected disabled>Behälter</option>
@@ -190,15 +223,16 @@
             </select>
           </div>
         </td>
-        <td class="sku align-middle">–</td>
-        <td><input type="number" class="form-control qty" min="0" disabled></td>
-        <td class="sum text-end align-middle">0,00</td>
+        <td class="sku align-middle" data-label="SKU">–</td>
+        <td data-label="Menge"><input type="number" class="form-control qty" min="0" disabled></td>
+        <td class="sum text-end align-middle" data-label="Zwischensumme">0,00</td>
       </tr>`;
     orderBody.insertAdjacentHTML('beforeend', rowHTML);
 
     // Neu hinzugefügte Zeile initialisieren
     const newRow = orderBody.lastElementChild;
     initRow(newRow);
+    applyMobileLayout();
   }
 
   // ------------- Absenden ----------------------------------------------------

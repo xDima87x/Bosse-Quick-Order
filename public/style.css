@@ -84,14 +84,14 @@ img.thumb {
   padding: 0.25rem 0.25rem;
 }
 
-#productTable td:nth-child(4) .volume {
+#productTable td.volume > .d-flex {
   display: flex;
   flex-wrap: nowrap;
   gap: 0.25rem;
 }
 
-#productTable td:nth-child(4) .container-type,
-#productTable td:nth-child(4) .volume-select {
+#productTable td.volume .container-type,
+#productTable td.volume .volume-select {
   flex: 1 1 0;
   min-width: 0;
 }
@@ -237,86 +237,118 @@ select.form-select {
   text-decoration: underline;
 }
 
-@media (max-width: 576px) {
-  select.form-select.category,
-  select.form-select.product {
-    min-width: 200px;
-    font-size: 0.9rem;
+/* Mobile Layout ------------------------------------------------------------*/
+/* Alle Anpassungen für schmale Displays stehen in einer einzigen Media Query.
+   Dadurch bleibt das Desktop-Layout unangetastet. */
+@media (max-width: 768px) {
+  /* Container vollbreit und ohne horizontale Ausrichtung */
+  .card,
+  .card-body,
+  form,
+  .form-group,
+  .row,
+  .row > [class^="col-"],
+  table,
+  #productTable,
+  #productTable tbody,
+  #productTable tr,
+  #productTable td,
+  #productTable th {
+    width: 100% !important;
+    max-width: 100% !important;
+    box-sizing: border-box;
   }
-}
 
-/* Footer Layout */
-.bosse-footer [class^="col-"] {
-  text-align: left;
-}
-
-.bosse-footer .small {
-  font-size: 0.95rem;
-}
-
-.footer-block {
-  padding-left: 0.5rem;
-  padding-right: 0.5rem;
-}
-
-@media (min-width: 1200px) {
-  .footer-block {
-    padding-left: 1rem;
-    padding-right: 1rem;
+  .row,
+  .d-flex {
+    flex-direction: column !important;
+    align-items: stretch !important;
   }
-}
 
-.footer-block ul {
-  margin-top: -0.2rem;
-}
+  /* Formularfelder */
+  input,
+  select,
+  textarea,
+  button,
+  label,
+  .form-control,
+  .form-select,
+  .btn {
+    display: block;
+    width: 100%;
+    max-width: 100%;
+    box-sizing: border-box;
+    margin-bottom: 0.75rem;
+  }
 
-/* Select2 Anpassungen */
-.select2-container--default .select2-selection--single .select2-selection__rendered {
-  white-space: normal;
-  line-height: 1.3;
-  padding-right: 30px;
-}
+  /* Dropdowns innerhalb des Containers halten */
+  #productTable .select2-container,
+  #productTable .select2-dropdown,
+  #productTable select {
+    width: 100% !important;
+    max-width: 100% !important;
+    box-sizing: border-box !important;
+    position: relative;
+    z-index: 2000;
+  }
+  #productTable .select2-container--open .select2-dropdown {
+    width: 100% !important;
+    max-width: 100% !important;
+    z-index: 2000;
+  }
 
-.select2-container--default .select2-selection--single {
-  height: auto;
-  padding: 4px 0.45rem;
-  display: flex;
-  align-items: center;
-}
+  .card,
+  .card-body,
+  .form-group,
+  #productTable td {
+    overflow: visible;
+  }
 
-.select2-container--default .select2-selection--single .select2-selection__arrow {
-  height: 100%;
-  right: 6px;
-  top: 5px;
-}
-
-.select2-container .select2-dropdown {
-  width: auto;
-  min-width: 100%;
-  max-width: 320px;
-  box-sizing: border-box;
-}
-
-/* Verstecke das Volumen-Dropdown, wenn es deaktiviert ist */
-.volume-select:disabled {
-  display: none;
-}
-
-/* Container-Dropdown behält eigene Breite */
-.container-type {
-  flex: 0 0 auto;
-  width: auto;
-}
-/* --- Responsive: Bild-Spalte ausblenden bei kleinen Viewports --- */
-@media (max-width: 1400px) {
-  /* Ausblenden der Bild-Spalten-Kopfzeile und Zellen */
+  /* Bilder ausblenden */
   #productTable th:nth-child(3),
-  #productTable td:nth-child(3) {
+  #productTable td:nth-child(3),
+  img.thumb {
     display: none !important;
   }
-  /* Dropdown-Zellen auf volle Breite bringen */
-  #productTable td:nth-child(1),
-  #productTable td:nth-child(2) {
-    width: 50% !important;
+
+  #productTable thead {
+    display: none;
+  }
+
+  #productTable,
+  #productTable tbody,
+  #productTable tr {
+    display: block;
+  }
+
+  #productTable tr {
+    border: 1px solid #dee2e6;
+    border-radius: 0.5rem;
+    margin-bottom: 1rem;
+    padding: 0.5rem;
+  }
+
+  #productTable td {
+    display: flex;
+    flex-direction: column;
+    align-items: stretch;
+    padding: 0.25rem 0;
+  }
+
+  #productTable td::before {
+    content: attr(data-label);
+    display: block;
+    margin-bottom: 0.25rem;
+    font-weight: 600;
+  }
+
+  #productTable td > * {
+    width: 100%;
+    max-width: 100%;
+    box-sizing: border-box;
+  }
+
+  .table-responsive {
+    overflow: visible;
   }
 }
