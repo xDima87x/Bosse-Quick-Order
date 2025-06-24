@@ -320,3 +320,47 @@ select.form-select {
     width: 50% !important;
   }
 }
+
+/* Zusätzliche Mobile-Optimierung */
+@media (max-width: 768px) {
+  /* Formular volle Breite ohne Überlauf */
+  #orderForm,
+  .card {
+    width: 100%;
+    overflow: visible;
+  }
+
+  /* Behälter und Volumen nebeneinander */
+  .row-flex {
+    display: flex;
+    flex-wrap: nowrap;
+    gap: 0.5rem;
+  }
+  .row-flex > * {
+    flex: 1 1 50%;
+    max-width: 50%;
+  }
+
+  /* Einheitliche Label-Gestaltung */
+  label {
+    font-weight: 600;
+    margin-bottom: 0.5rem;
+    white-space: normal;
+    word-break: break-word;
+  }
+
+  /* Bildplatzhalter ausblenden */
+  img.thumb {
+    display: none;
+  }
+
+  /* Gleichmäßiges Spacing innerhalb des Formulars */
+  #orderForm > * {
+    margin-bottom: 0.75rem;
+  }
+
+  /* Dropdown-Panels vollständig sichtbar */
+  select.form-select {
+    z-index: 999;
+  }
+}
