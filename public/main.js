@@ -179,7 +179,7 @@
           <img class="thumb" src="" alt="" height="48">
         </td>
         <td>
-          <div class="d-flex gap-1">
+          <div class="d-flex gap-1 row-flex">
             <select class="form-select form-select-sm container-type">
               <option value="" selected disabled>Behälter</option>
               <option value="Flasche">Flasche</option>
@@ -190,8 +190,18 @@
             </select>
           </div>
         </td>
-        <td class="sku align-middle">–</td>
-        <td><input type="number" class="form-control qty" min="0" disabled></td>
+        <td class="sku align-middle">
+          <div class="line-flex">
+            <span class="form-label mb-0">SKU</span>
+            <span class="sku-value">–</span>
+          </div>
+        </td>
+        <td>
+          <div class="line-flex">
+            <label class="form-label mb-0">Menge</label>
+            <input type="number" class="form-control qty" min="0" disabled>
+          </div>
+        </td>
         <td class="sum text-end align-middle">0,00</td>
       </tr>`;
     orderBody.insertAdjacentHTML('beforeend', rowHTML);
