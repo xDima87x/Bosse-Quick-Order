@@ -78,35 +78,41 @@
 
     catSel.onchange = () => {
       prodSel.disabled = !catSel.value;
-      qtyInp.disabled  = true;
+      qtyInp.disabled = true;
       qtyInp.value = '';
       sumTd.textContent = '0,00';
 
       prodSel.innerHTML = '<option value="" selected disabled>– Produkt –</option>';
       initSelect2(prodSel, 'Produkt wählen');
-      $(prodSel).prop('disabled', !catSel.value);  // Disable if no category yet
+      $(prodSel).prop('disabled', !catSel.value);
 
       imgEl.src = '';
       imgEl.alt = '';
       skuTd.textContent = '–';
 
-      // Removed container reset to keep container hidden until product selection
-      // contSel.value = '';
-      // initSelect2(contSel, 'Behälter wählen');
-      // volSel.disabled = true;
-      // volSel.value = '';
-      // initSelect2(volSel, 'Menge wählen');
+      // Always hide container and volume selects until a product is chosen
+      contSel.disabled = true;
+      contSel.style.display = 'none';
+      volSel.disabled = true;
+      volSel.style.display = 'none';
 
       if (catSel.value) {
-        byCategory[catSel.value].forEach(p => {
-          prodSel.insertAdjacentHTML(
-            'beforeend',
-            `<option value="${p.sku}" data-price="${p.price ?? 0}" data-img="${p.image}" data-sku="${p.sku}">
-               ${p.name}
-             </option>`,
-          );
-        });
-        initSelect2(prodSel, 'Produkt wählen');
+        const list = byCategory[catSel.value] || [];
+        console.debug('category', catSel.value, 'products', list);
+        if (!list.length) {
+          prodSel.innerHTML = '<option value="" selected disabled>Keine Produkte in dieser Kategorie</option>';
+          $(prodSel).prop('disabled', true);
+        } else {
+          list.forEach(p => {
+            prodSel.insertAdjacentHTML(
+              'beforeend',
+              `<option value="${p.sku}" data-price="${p.price ?? 0}" data-img="${p.image}" data-sku="${p.sku}">
+                 ${p.name}
+               </option>`
+            );
+          });
+          initSelect2(prodSel, 'Produkt wählen');
+        }
       }
 
       contSel.onchange = () => {
@@ -179,7 +185,7 @@
           <img class="thumb" src="" alt="" height="48">
         </td>
         <td>
-          <div class="d-flex gap-1">
+          <div class="d-flex gap-1 row-flex">
             <select class="form-select form-select-sm container-type">
               <option value="" selected disabled>Behälter</option>
               <option value="Flasche">Flasche</option>
@@ -190,8 +196,18 @@
             </select>
           </div>
         </td>
-        <td class="sku align-middle">–</td>
-        <td><input type="number" class="form-control qty" min="0" disabled></td>
+        <td class="sku align-middle">
+          <div class="line-flex">
+            <span class="form-label mb-0">SKU</span>
+            <span class="sku-value">–</span>
+          </div>
+        </td>
+        <td>
+          <div class="line-flex">
+            <label class="form-label mb-0">Menge</label>
+            <input type="number" class="form-control qty" min="0" disabled>
+          </div>
+        </td>
         <td class="sum text-end align-middle">0,00</td>
       </tr>`;
     orderBody.insertAdjacentHTML('beforeend', rowHTML);
