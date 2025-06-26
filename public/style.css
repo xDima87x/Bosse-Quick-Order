@@ -320,3 +320,74 @@ select.form-select {
     width: 50% !important;
   }
 }
+
+/* MOBILE FIX BEGIN */
+@media (max-width: 768px) {
+  /* Formular und Tabelle breit halten, keine horizontale Scrollbar */
+  #orderForm,
+  .card {
+    width: 100%;
+    overflow-x: hidden;
+  }
+  #productTable {
+    width: 100%;
+    table-layout: fixed;
+    font-size: 0;
+  }
+  #productTable thead,
+  #productTable tbody,
+  #productTable tr,
+  #productTable th,
+  #productTable td {
+    display: block;
+    width: 100%;
+    font-size: 1rem;
+  }
+
+  /* Behälter und Volumen nebeneinander */
+  .row-flex {
+    display: flex;
+    flex-wrap: nowrap;
+    gap: 0.5rem;
+  }
+  .row-flex > * {
+    flex: 1 1 50%;
+    max-width: 50%;
+  }
+
+  /* SKU- und Mengen-Zeilen innerhalb der Zellen */
+  .line-flex {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 0.5rem;
+  }
+  .line-flex label {
+    margin-bottom: 0;
+  }
+
+  /* Einheitliche Label-Gestaltung */
+  label {
+    font-weight: 600;
+    margin-bottom: 0.5rem;
+    white-space: normal;
+    word-break: break-word;
+  }
+
+  /* Bildplatzhalter ausblenden */
+  img.thumb {
+    display: none;
+  }
+
+  /* Gleichmäßiges Spacing innerhalb des Formulars */
+  #orderForm > * {
+    margin-bottom: 0.75rem;
+  }
+
+  /* Dropdown-Panels vollständig sichtbar */
+  select.form-select {
+    z-index: 999;
+    max-width: 100%;
+  }
+}
+/* MOBILE FIX END */
